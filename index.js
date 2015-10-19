@@ -16,13 +16,13 @@ module.exports = function (params) {
       extensions = typeof params.extensions === 'string' ? [params.extensions] : params.extensions;
     }
 
-    function include(file, callback) {
+    function esi(file, callback) {
       if (file.isNull()) {
         return callback(null, file);
       }
 
       if (file.isStream()) {
-        throw new gutil.PluginError('gulp-include', 'stream not supported');
+        throw new gutil.PluginError('gulp-esi-include', 'stream not supported');
       }
 
       if (file.isBuffer()) {
@@ -33,7 +33,7 @@ module.exports = function (params) {
       callback(null, file);
     }
 
-    return es.map(include)
+    return es.map(esi)
 };
 
 function processInclude(content, filePath) {
