@@ -37,7 +37,7 @@ module.exports = function (params) {
 };
 
 function processInclude(content, filePath) {
-  var matches = content.match(/^(\s+)?(\/\/|\/\*|\#)(\s+)?=(\s+)?(include|require)(.+$)/mg);
+  var matches = content.match(/^(\s+)?\<esi\:(include)\s+src\s?=\s?"(.+)".+$/mg);
   var relativeBasePath = path.dirname(filePath);
   
   if (!matches) return content;
@@ -54,11 +54,12 @@ function processInclude(content, filePath) {
     // Remove beginnings, endings and trim.
     var includeCommand = matches[i]
       .replace(/(\s+)/gi, " ")
-      .replace(/(\/\/|\/\*)(\s+)?=(\s+)?/g, "")
-      .replace(/(\*\/)$/gi, "")
+      .replace(/<esi:|src\s?="|"\s?\/>/g, "")
       .replace(/['"]/g, "")
       .trim();
     var split = includeCommand.split(" ");
+
+    console.log(split);
     
     // Split the directive and the path
     var includeType = split[0];
