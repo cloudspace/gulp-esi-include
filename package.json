@@ -1,11 +1,9 @@
 {
-  "name": "gulp-include",
+  "name": "gulp-esi-include",
   "version": "2.0.2",
-  "description": "Makes inclusion of files a breeze. Enables functionality similar to that of snockets / sprockets or other file insertion compilation tools.",
-  "homepage": "http://github.com/wiledal/gulp-include",
   "repository": {
     "type": "git",
-    "url": "git://github.com/wiledal/gulp-include.git"
+    "url": "git://github.com/cloudspace/gulp-esi-include.git"
   },
   "main": "index.js",
   "scripts": {
