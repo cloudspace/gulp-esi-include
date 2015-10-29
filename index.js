@@ -26,7 +26,7 @@ module.exports = function (params) {
       }
 
       if (file.isBuffer()) {
-        var newText = processInclude(String(file.contents), file.path);
+        var newText = processInclude(String(file.contents), file.path, params);
         file.contents = new Buffer(newText);
       }
 
@@ -36,7 +36,7 @@ module.exports = function (params) {
     return es.map(esi)
 };
 
-function processInclude(content, filePath) {
+function processInclude(content, filePath, params) {
   var matches = content.match(/^(\s+)?\<esi\:(include)\s+src\s?=\s?"(.+)".+$/mg);
   var relativeBasePath = path.dirname(filePath);
   
@@ -59,6 +59,8 @@ function processInclude(content, filePath) {
       .trim();
     var split = includeCommand.split(" ");
 
+    split[1] = params.override || split[1];
+    
     console.log(split);
     
     // Split the directive and the path
