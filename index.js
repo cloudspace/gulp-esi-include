@@ -61,8 +61,6 @@ function processInclude(content, filePath, params) {
 
     split[1] = params.override || split[1];
     
-    console.log(split);
-    
     // Split the directive and the path
     var includeType = split[0];
     var includePath = relativeBasePath + "/" + split[1];
